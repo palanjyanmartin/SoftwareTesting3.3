@@ -2,28 +2,30 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import pages.iStyleHomePage;
+import org.openqa.selenium.firefox.FirefoxOptions;
 
+import java.net.URL;
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import static constants.iStyleBaseURL.base_url;
 
-
 public class BaseTest {
-    private WebDriver driver;
+    protected WebDriver driver;
     protected iStyleHomePage iStyleHomePage;
 
     @BeforeMethod
-    public void setUp() {
-        System.setProperty("webdriver.chrome.driver", "/Users/martinpalanjyan/Desktop/chromedriver");
-        driver = new ChromeDriver();
+    public void setUp() throws MalformedURLException {
+        FirefoxOptions capabilities = new FirefoxOptions();
+        driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capabilities);
         driver.get(base_url);
         iStyleHomePage = new iStyleHomePage(driver);
     }

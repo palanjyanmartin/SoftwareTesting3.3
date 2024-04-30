@@ -1,7 +1,6 @@
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 import pages.*;
-
 import static constants.iStyleLoginPageAssertionMessages.*;
 import static constants.iStyleMyAccountPageLocators.*;
 import static org.testng.Assert.*;
